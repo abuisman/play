@@ -1,9 +1,33 @@
 module Play
   class AfplayClient < Client
+     
+    # Night owl custom posting
+    # 
+    # Custom posting of our songs.
+    def self.updateSite
+        require 'net/http'
+        require 'json'
+
+        begin
+           data = Net::HTTP.get_response(URI.parse('http://localhost:5050/api/now_playing')).body
+            result = data
+            #puts result.inspect
+        end
+
+        url = URI.parse('http://nightowlinteractive.com/updatemusic.php?key=4FG4SD423MWRP23')
+
+        post_args = {
+            values: result
+        }
+
+        resp, data = Net::HTTP.post_form(url, post_args)
+    end 
+      
     # Cause the client to play a song
     #
     # Returns nothing
     def self.play(song_path)
+      updateSite
       system("afplay", song_path)
     end
 

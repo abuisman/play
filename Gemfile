@@ -13,6 +13,7 @@ gem 'rb-fsevent'
 gem 'fssm'
 gem 'unicorn',       '~>4.1.0'
 gem 'sass',          '~>3.1'
+gem 'json'
 
 group :test do
   gem 'rack-test'
