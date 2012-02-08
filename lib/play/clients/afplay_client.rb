@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 module Play
   class AfplayClient < Client
      
@@ -5,9 +8,7 @@ module Play
     # 
     # Custom posting of our songs.
     def self.updateSite
-        require 'net/http'
-        require 'json'
-
+    
         begin            
             url = URI.parse('http://nightowlinteractive.com/updatemusic.php?key=4FG4SD423MWRP23')
 
