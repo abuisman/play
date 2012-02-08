@@ -8,19 +8,15 @@ module Play
         require 'net/http'
         require 'json'
 
-        begin
-           data = Net::HTTP.get_response(URI.parse('http://localhost:5050/api/now_playing')).body
-            result = data
-            #puts result.inspect
+        begin            
+            url = URI.parse('http://nightowlinteractive.com/updatemusic.php?key=4FG4SD423MWRP23')
+
+            post_args = {values: Net::HTTP.get_response(URI.parse('http://localhost:5050/api/now_playing')).body}
+
+            resp, data = Net::HTTP.post_form(url, post_args)
         end
 
-        url = URI.parse('http://nightowlinteractive.com/updatemusic.php?key=4FG4SD423MWRP23')
-
-        post_args = {
-            values: result
-        }
-
-        resp, data = Net::HTTP.post_form(url, post_args)
+       
     end 
       
     # Cause the client to play a song
