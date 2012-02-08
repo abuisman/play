@@ -200,3 +200,22 @@ a:hover {
 
 .bio {
   line-height: 1.5em; }
+
+/*
+ * Owling it up
+ */
+#advanced_controls {
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee; }
+  #advanced_controls .button {
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 -1px 0px #3299bb;
+    border: 1px solid #3299BB;
+    background-color: #4ba9c7;
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-right: 5px; }
