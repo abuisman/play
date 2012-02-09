@@ -36,7 +36,7 @@ jQuery(document).ready(function(){
 			dataType: 'json',
 			success: function(results){
 				if(results['volume'] === 0){
-					action('volume', {level: 1});
+					action('volume', {level: 5});
 					mute_button.html('Mute');
 				} else {
 					action('volume', {level: 0});
