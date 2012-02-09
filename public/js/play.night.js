@@ -11,6 +11,7 @@ jQuery(document).ready(function(){
 		});
 	}
 
+	/*
 	var mute_button = jQuery('#control-volume-mute');
 	
 	jQuery.ajax({
@@ -47,5 +48,5 @@ jQuery(document).ready(function(){
 		
 		return false;		
 	});
-	
+	*/
 });
