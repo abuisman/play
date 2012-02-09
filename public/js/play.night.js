@@ -10,7 +10,18 @@ jQuery(document).ready(function(){
 			data: data
 		});
 	}
-
+	
+	// Button for importing (indexing) new songs.
+	var import_button = jQuery('#control-songs-import');
+	// Bind the click on the import button
+	import_button.click(function(){
+		jQuery.ajax({
+			url: '/api/import',
+			type: 'get',
+			dataType: 'json'
+		});
+	});
+	
 	/*
 	var mute_button = jQuery('#control-volume-mute');
 	
