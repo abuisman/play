@@ -89,13 +89,23 @@ module Play
       error_response "This hasn't been implemented yet. Whoops."
     end
 
-    get "/api/search" do
+    get "/api/search" do      
       songs = case params[:facet]
       when 'artist'
         artist = Artist.find_by_name(params[:q])
         artist ? artist.songs : nil
       when 'song'
-        Song.where(:title => params[:q])
+        songs = []
+        Song.where(:title => params[:q]).each do |song|
+          songs.push(song)
+        end
+        Artist.where(:name => params[:q]).songs.each do |song|
+          songs.push(song)
+        end
+        Album.where("name LIKE '%?%'", params[:q]).songs.each do |song|
+          songs.push(song)
+        end
+        songs
       end
 
       songs ? {:song_titles => songs.collect(&:title)}.to_json : error_response("Search. Problem?")
