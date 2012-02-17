@@ -151,7 +151,7 @@ module Play
       #artist = Artist.where("LOWER(name) = ?", @search.downcase).first
       #redirect "/artist/#{URI.escape(artist.name)}" if artist
       songs = []
-        Song.where("title LIKE '%?%'", @search).each do |song|
+        Song.where("title LIKE ?", "%#{@search}%").each do |song|
           songs.push(song)
         end
         Artist.where("name LIKE ?", "%#{@search}%").songs.each do |song|
