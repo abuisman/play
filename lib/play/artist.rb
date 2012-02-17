@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Play
   class Artist < ActiveRecord::Base
     has_many :songs

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Play
   class App < Sinatra::Base
     get "/api/now_playing" do
