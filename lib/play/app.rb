@@ -154,11 +154,20 @@ module Play
         Song.where("title LIKE ?", "%#{@search}%").each do |song|
           songs.push(song)
         end
-        Artist.where("name LIKE ?", "%#{@search}%").songs.each do |song|
-          songs.push(song)
+        Artist.where("name LIKE ?", "%#{@search}%").each do |artist|
+          if artist.songs
+            artist.songs.each do |song|
+              songs.push(song)
+            end
+          end
+          
         end
-        Album.where("name LIKE ?", "%#{@search}%").songs.each do |song|
-          songs.push(song)
+        Album.where("name LIKE ?", "%#{@search}%").each do |album|
+          if album.songs
+            album.songs.each do |song|
+              songs.push(song)
+            end
+          end
         end
       @songs = songs
       mustache :search
