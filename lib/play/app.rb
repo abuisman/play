@@ -1,5 +1,6 @@
 require 'play/app/api'
-
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
 module Play
   class App < Sinatra::Base
     register Mustache::Sinatra
@@ -49,8 +50,7 @@ module Play
     end
 
     get "/" do
-      Encoding.default_external = Encoding::UTF_8
-      Encoding.default_internal = Encoding::UTF_8
+
       @recent   = History.limit(3+1).order('created_at desc').collect(&:song)
       @recent   = @recent.reverse[0..-2]
       @current  = current_song
