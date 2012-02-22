@@ -18,7 +18,7 @@ module Play
     #
     # Returns an Array of String file paths.
     def self.fs_songs(path)
-      `find -L "#{path}" -type f ! -name '.*'`.encode('UTF-8').split("\n")
+      `find -L "#{path}" -type f ! -name '.*'`.split("\n")
     end
 
     # Imports an array of songs into the database.
