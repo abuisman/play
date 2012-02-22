@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 module Play
   class Mpg123Client < Client
     # Night owl custom posting
