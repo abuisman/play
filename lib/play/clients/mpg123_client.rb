@@ -1,9 +1,24 @@
 module Play
   class Mpg123Client < Client
+    # Night owl custom posting
+    # 
+    # Custom posting of our songs.
+    def self.updateSite
+        begin            
+            url = URI.parse('http://nightowlinteractive.com/updatemusic.php?key=4FG4SD423MWRP23')
+
+            data = Net::HTTP.get_response(URI.parse('http://localhost:5050/api/now_playing')).body
+            post_args = {'values' => data}
+
+            resp, data = Net::HTTP.post_form(url, post_args)
+        end       
+    end 
+
     # Cause the client to play a song
     #
     # Returns nothing
     def self.play(song_path)
+      updateSite
       system("mpg123", song_path)
     end
 
