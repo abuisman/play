@@ -21,6 +21,13 @@ jQuery(document).ready(function(){
 			dataType: 'json'
 		});
 	});
+
+	// Set volume button actions:
+	jQuery('.control-volume').live('click', function(){
+		var button = jQuery(this);
+		var volume_level = button.attr('data-volume-level');
+		action('volume', {level: volume_level});
+	});
 	
 	/*
 	var mute_button = jQuery('#control-volume-mute');
