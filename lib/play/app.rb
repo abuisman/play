@@ -72,6 +72,7 @@ module Play
     end
 
     get '/auth/:name/callback' do
+      OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
       auth = request.env['omniauth.auth']
       @user = User.authenticate(auth['user_info'])
       session['user_id'] = @user.id
