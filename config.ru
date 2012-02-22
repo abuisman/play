@@ -8,7 +8,8 @@ require 'omniauth/oauth'
 oauth = Play.config
 
 use Rack::Session::Cookie
-use OmniAuth::Strategies::GitHub, oauth['gh_key'], oauth['gh_secret']
+use OmniAuth::Strategies::GitHub, oauth['gh_key'], oauth['gh_secret'],
+	:client_options => {:ssl => {:ca_path => '/etc/pki/tls/certs'}}
 
 require 'sass/plugin/rack'
 Sass::Plugin.options[:template_location] = 'public/scss'
