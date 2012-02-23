@@ -4,8 +4,10 @@
   <title>Play: {{title}}</title>
   <link rel="stylesheet" href="/stylesheets/base.css" type="text/css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/js/play.js"></script>
   <script type="text/javascript" src="/js/play.night.js"></script>
+  <link rel="stylesheet" href="/css/ui-darkness/jquery-ui-1.8.17.custom.css" type="text/css" />
 </head>
 
 <body>
@@ -30,7 +32,18 @@
      <a id='control-volume-80' class='button control-volume' data-volume-level='80' href='#'>80%</a>
      <a id='control-volume-100' class='button control-volume' data-volume-level='100' href='#'>100%</a>
      <a id='control-songs-import' class='button' href='#'>Index uploaded songs</a>
+
+    <div class="demo">
+
+    <p>
+      <label> Volume</label>
+    </p>
+
+    <div id="slider-range-min"></div>
+
+    </div>
   </div>
+
 
   <div class="controller">
     {{#stream?}}

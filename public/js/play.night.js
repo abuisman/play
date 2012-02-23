@@ -1,13 +1,14 @@
 jQuery(document).ready(function(){
 	
 	function action(action, data, success){
-		data = (data === undefined) ? {} : data;
-		type = (data === {}) ? 'get' : 'post';
+    var type = (data === undefined) ? 'get' : 'post';
 		success = (success === undefined) ? function(){} : success;
 		jQuery.ajax({
 			url: '/api/'+action,
 			type: type,
-			data: data
+      dataType: 'json',
+			data: (data === undefined) ? {} : data,
+      success: success
 		});
 	}
 	
@@ -28,43 +29,53 @@ jQuery(document).ready(function(){
 		var volume_level = button.attr('data-volume-level');
 		action('volume', {level: volume_level});
 	});
-	
-	/*
-	var mute_button = jQuery('#control-volume-mute');
-	
-	jQuery.ajax({
-		url: '/api/volume',
-		type: 'get',
-		dataType: 'json',
-		success: function(results){
-			console.log(results);
-			if(results['volume'] === 0){
-				mute_button.html('Unmute');
-			} else {
-				mute_button.html('Mute');
-			}
-		}
-	});
-	
-	mute_button.live('click', function(e){
-		e.preventDefault();
 
-		jQuery.ajax({
-			url: '/api/volume',
-			type: 'get',
-			dataType: 'json',
-			success: function(results){
-				if(results['volume'] === 0){
-					action('volume', {level: 5});
-					mute_button.html('Mute');
-				} else {
-					action('volume', {level: 0});
-					mute_button.html('Unmute');
-				}
-			}
-		});
-		
-		return false;		
-	});
-	*/
+  action('volume', undefined, function(resp) {
+    $( "#slider-range-min" ).slider({
+      range: "min",
+      change: function(event, ui) { action('volume', {'level': $(this).slider('value')}); },
+      value: resp.volume,
+      min: 0,
+      max: 100,
+    });
+  });
+
+/*
+  var mute_button = jQuery('#control-volume-mute');
+
+  jQuery.ajax({
+    url: '/api/volume',
+    type: 'get',
+    dataType: 'json',
+    success: function(results){
+      console.log(results);
+      if(results['volume'] === 0){
+        mute_button.html('Unmute');
+      } else {
+        mute_button.html('Mute');
+      }
+    }
+  });
+
+  mute_button.live('click', function(e){
+    e.preventDefault();
+
+    jQuery.ajax({
+      url: '/api/volume',
+      type: 'get',
+      dataType: 'json',
+      success: function(results){
+        if(results['volume'] === 0){
+          action('volume', {level: 5});
+          mute_button.html('Mute');
+        } else {
+          action('volume', {level: 0});
+          mute_button.html('Unmute');
+        }
+      }
+    });
+
+    return false;		
+  });
+*/
 });
