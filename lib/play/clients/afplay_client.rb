@@ -22,7 +22,7 @@ module Play
     #
     # Returns nothing
     def self.play(song_path)
-      updateSite
+      updateSite()
       system("afplay", song_path)
     end
 
