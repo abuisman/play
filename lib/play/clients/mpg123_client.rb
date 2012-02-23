@@ -8,11 +8,14 @@ module Play
     # Custom posting of our songs.
     def self.updateSite
         begin            
+            say("----------------------------")
+            say("Going to push to server")
             url = URI.parse('http://nightowlinteractive.com/updatemusic.php?key=4FG4SD423MWRP23')
 
             data = Net::HTTP.get_response(URI.parse('http://0.0.0.0:5050/api/now_playing')).body
             post_args = {'values' => data}
-
+            say(post_args.inspect);
+            say("-----------------------------")
             resp, data = Net::HTTP.post_form(url, post_args)
         end       
     end 
