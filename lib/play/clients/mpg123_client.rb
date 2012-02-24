@@ -25,7 +25,8 @@ module Play
     # Returns nothing
     def self.play(song_path)
       updateSite()
-      system("mpg123 --mono", song_path)
+      #system("mpg123", "--mono", song_path)
+      system "mpg123 --mono #{song_path}"
     end
 
     # The temp file we use to signify whether Play should be paused.
