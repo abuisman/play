@@ -45,7 +45,8 @@ module Play
     #
     # Returns and Array of Vote objects.
     def current_votes
-      votes.where(:active => true).all
+      temp = votes.where(:active => true).all
+      temp << votes.where(:song_id => self.now_playing.id).all.first
     end
 
     # Stars a song.

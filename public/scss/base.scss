@@ -191,11 +191,11 @@ a:hover{
 }
 
 .song .stats{
-  display: none;
-  background-color: #111;
-  padding: 5px 10px;
+  padding: 5px 10px 5px 40px;
   font-size: 13px;
-  color: #BCBCBC;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: #ccc;
+  font-size: 12px;
 }
 .song .spinner{
   vertical-align: middle;
