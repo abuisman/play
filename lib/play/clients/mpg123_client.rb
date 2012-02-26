@@ -91,7 +91,7 @@ module Play
       vol.to_i
     end
 
-    def music_response(song)
+    def self.music_response(song)
       {
         'artist_name'         => song.artist_name,
         'song_title'          => song.title,
