@@ -90,5 +90,18 @@ module Play
       vol = `amixer get Master`.scan(/([0-9]+)%/).first.last
       vol.to_i
     end
+
+    def music_response(song)
+      {
+        'artist_name'         => song.artist_name,
+        'song_title'          => song.title,
+        'album_name'          => song.album_name,
+        'last_played_at'      => song.last_played_at,
+        'song_download_path'  => "/song/#{song.id}/download",
+        'album_download_path' => "/album/#{song.album_id}/download",
+        'alumb_art_url'       => song.album.art_url
+      }.to_json
+    end
+
   end
 end
