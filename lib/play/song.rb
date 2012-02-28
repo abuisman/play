@@ -36,7 +36,11 @@ module Play
     # Returns a String.
     def to_playcount
       count = playcount || 0
-      "Played #{count} time#{'s' if count != 1}"
+      if self.now_playing?
+        "Now playing"
+      else
+        "Played #{count} time#{'s' if count != 1}"
+      end
     end
 
     # The current votes for a song. A song may have many historical votes,
@@ -45,8 +49,21 @@ module Play
     #
     # Returns and Array of Vote objects.
     def current_votes
-      temp = votes.where(:active => true).all
-      temp << votes.where(:song_id => self.now_playing.id, :active => false).all.first
+      votes.where(:active => true).all
+    end
+
+    def last_voter
+      if self.played_from_queue
+        temp = votes.where(:song_id => self.id).order('created_at desc').first
+        if temp
+          voter = {'played_from_queue' => true, 'login' => temp.user.login}
+        else
+          voter = {'not_played_from_queue' => true}
+        end
+      else
+        voter = {'not_played_from_queue' => true}
+      end
+      voter
     end
 
     # Stars a song.
@@ -114,7 +131,13 @@ module Play
     # Returns the Song that was selected next to be played.
     def self.play_next_in_queue
       song = queue.first
+      if song
+        queued = true;
+      else
+        queued = false;
+      end
       song ||= office_song
+      song.played_from_queue = queued
       Play::History.create(:song => song)
       song.play!
       song.increment!(:playcount)

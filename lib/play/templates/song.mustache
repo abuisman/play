@@ -36,5 +36,15 @@
         Queued by <a href="/{{login}}">{{login}}</a>
       {{/user}}
     {{/current_votes}}
+    {{#now_playing}}
+      {{#last_voter}}
+        {{#played_from_queue}}
+          Queued by <a href="/{{login}}">{{login}}</a>
+        {{/played_from_queue}}
+        {{#not_played_from_queue}}
+          Randomly selected by system
+        {{/not_played_from_queue}}
+      {{/last_voter}}
+    {{/now_playing}}
   </div>
 </div>
