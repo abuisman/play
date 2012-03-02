@@ -93,6 +93,7 @@ module Play
     # Returns true if removed properly, false otherwise.
     def dequeue!(user=nil)
       self.queued = false
+      votes.update_all(:active => false)
       save
     end
 
